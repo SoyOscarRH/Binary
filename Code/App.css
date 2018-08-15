@@ -1,0 +1,13 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+}
+
+.item {
+    background-color: #009688;
+    padding: 1rem;
+    text-align: center;
+    border-color: white;
+    border-radius: 0.9rem;
+}
