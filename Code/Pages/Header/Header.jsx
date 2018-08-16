@@ -1,11 +1,6 @@
-// ======================================================================
-// ============          WEB APP IN REACT           =====================
-// ======================================================================
-
-/* ========= BASIC REACT THINGS ===============*/
 import React from "react"
 
-export function Header(props) {
+export default function Header(props) {
 
     return (
         <React.Fragment>

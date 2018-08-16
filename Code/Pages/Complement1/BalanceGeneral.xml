@@ -1,0 +1,26 @@
+<BalanceGeneral>
+    <Activo desc="Bienes o derechos de la empresa">
+
+        <Caja />
+        <Banco />
+        <Mercancias />
+        <Clientes 
+            des="Son las personas que compranon mercancias de la empresa intereses" 
+        />
+        <DocumentosPorCobrar 
+            des="Titulos a credito a favor del negocio" 
+        />
+        <DeudoresDiversos 
+            des="Son las personas que deben al negocio por algo que no es mercancias" 
+        />
+        <Terrenos />
+        <Edificios />
+        <Mobiliario />
+        <EquipoDeComputo />
+        <EquipoDeEntregaOReparto />
+        <EquipoDeTransporte />
+        
+
+    </Activo>
+
+</BalanceGeneral>
