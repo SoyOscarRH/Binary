@@ -70,7 +70,6 @@ export default class Complement1 extends React.Component {
     }
 
 
-
     render () {
 
         let Element1 =  <SimpleInput 
@@ -113,7 +112,7 @@ export default class Complement1 extends React.Component {
                 </div>
 
                 <div className="fixed-action-btn">
-                    <a className="btn-floating btn-large red waves-effect waves-light" onClick={e => Flip()}>
+                    <a className="btn-floating btn-large red waves-effect waves-light" onClick={e=>Flip()}>
                         <i className="material-icons">autorenew</i>
                     </a>
                 </div>
