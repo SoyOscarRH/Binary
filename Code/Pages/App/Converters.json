@@ -1,28 +1,38 @@
 {
-    "Simple Conversions": {
-        "SubTypes": {
-            "From binary to base-10": {
-                "Link": "/FromBinarytoComplement1/",
-            },
-            "From base-10 to binary": {
-                "Link": "/FromBinarytoComplement1/",
-            }
+    "Data": [
+        {
+            "Name": "Simple Conversions",
+            "SubTypes": [
+                [
+                    "From binary to base-10",
+                    "/DecimalToBinary/"
+                ],
+                [
+                    "From base-10 to binary",
+                    "/DecimalToBinary/"
+                ]
+            ]
+        },
+        {
+            "Name": "Negative Representations",
+            "SubTypes": [
+                [
+                    "Reserve bit",
+                    "/FromBinarytoComplement1/"
+                ],
+                [
+                    "Complement to 1",
+                    "/FromBinarytoComplement1/"
+                ],
+                [
+                    "Complement to 2",
+                    "/FromBinarytoComplement2/"
+                ],
+                [
+                    "Partial Representation",
+                    "/FromBinarytoComplement1/"
+                ]
+            ]
         }
-    },
-    "Negative Representations": {
-        "SubTypes": {
-            "Reserve bit": {
-                "Link": "/FromBinarytoComplement1/",
-            },
-            "Complement to 1": {
-                "Link": "/FromBinarytoComplement1/",
-            },
-            "Complement to 2": {
-                "Link": "/FromBinarytoComplement1/",
-            },
-            "Partial Representation": {
-                "Link": "/FromBinarytoComplement1/",
-            }
-        }
-    }
+    ]
 }

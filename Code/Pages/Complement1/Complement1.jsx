@@ -1,25 +1,6 @@
 import React from "react"
 import {toBinaryStyle} from "../../Helpers/Binary"
-
-
-function SimpleInput (props) {
-    return (
-        <React.Fragment>
-            <h4>{props.title}</h4>
-            <div className="input-field">
-                <input 
-                    className="validate" 
-                    value={props.value}
-                    onChange={e => props.onChange(e)}
-                    style={{
-                        fontWeight: "200",
-                        fontSize: "3.0rem"
-                    }}
-                />
-            </div>
-        </React.Fragment>
-    )
-}
+import SimpleInput from "../../Components/SimpleInput"
 
 export default class Complement1 extends React.Component {
     
@@ -74,12 +55,14 @@ export default class Complement1 extends React.Component {
 
         let Element1 =  <SimpleInput 
                             title={"Normal Binary"}
+                            materializeCSSColorText = "indigo-text text-darken-1"
                             value={this.state.NormalBinary}
                             onChange={e => this.ConvertFromNormalBinary(e.target.value)}
                         />
 
         let Element2 =  <SimpleInput 
                         title={"Complement 1"}
+                        materializeCSSColorText = "teal-text text-darken-2"
                         value={this.state.Complement1}
                             onChange={e => this.ConvertFromComplement1(e.target.value)}
                     />
