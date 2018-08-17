@@ -1,4 +1,5 @@
 import React from "react"
+import {Link} from "react-router-dom"
 
 export default function Header(props) {
 
@@ -7,7 +8,7 @@ export default function Header(props) {
             <div className="navbar-fixed blue-grey darken-3">
                 <nav className="blue-grey darken-3">
                     <div className="nav-wrapper blue-grey darken-3 container">
-                        <a className="brand-logo center" style={{fontSize: "1.5rem"}}>
+                        <a className="brand-logo center" style={{fontSize: "1.3rem"}}>
                             <b>Binary</b> Conversions
                         </a>
                         <a href="" data-target="SideNav" className="sidenav-trigger show-on-large">
@@ -49,9 +50,9 @@ export default function Header(props) {
                     </a>
                 </li>
                 <li>
-                    <a className="waves-effect" href="#!">
+                    <Link className="waves-effect" to="/FromBinarytoComplement1/">
                         Complement-1
-                    </a>
+                    </Link>
                 </li>
                 <li>
                     <a className="waves-effect" href="#!">

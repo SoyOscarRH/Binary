@@ -32,26 +32,32 @@ class App extends React.Component {
     }
 
     render() {
+
         return (
-            <div>
+            <React.Fragment>
                 <Header />
 
-                <Switch>
-                    {/*<Route 
-                        path='/FromBase10ToBase2/:numberInBase10' 
-                        render={ (props) => <FromBase10ToBase2 {...props} /> }
-                    />*/}
-
-                    <Route 
-                        path='/Complement1/:numberToComplement1' 
-                        render={ (props) => <Complement1 {...props} /> }
-                    />
-
-                </Switch>
+                <main>
+                    <br />
+                    <Switch>
+                        <Route
+                            exact  = {false}
+                            path   = '/FromBinarytoComplement1/' 
+                            render = {(props) =>  <Complement1 {...props} />}
+                        />
+                    </Switch>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </main>
 
                 <Footer />
-    
-            </div>
+            </React.Fragment>
         )
     }
     
