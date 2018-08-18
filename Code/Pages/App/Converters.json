@@ -17,10 +17,6 @@
             "Name": "Negative Representations",
             "SubTypes": [
                 [
-                    "Reserve bit",
-                    "/FromBinarytoComplement1/"
-                ],
-                [
                     "Complement to 1",
                     "/FromBinarytoComplement1/"
                 ],
