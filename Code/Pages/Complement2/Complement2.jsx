@@ -20,6 +20,7 @@ export default class Complement2 extends React.Component {
 
         M.FloatingActionButton.init(buttons, {})
         M.FormSelect.init(selectors, {})
+        MathJax.Hub.Typeset()
     }
 
     ConvertFromBinary(text) {
@@ -160,7 +161,55 @@ export default class Complement2 extends React.Component {
                         
                         <div className="row">
                             <h3 style={{fontWeight: 200}}> Complement <b>2</b> </h3>
-                            This is simple, just divide and save the residues
+                                
+                                <p>
+                                    This is ... This is awesome.
+                                </p>
+
+                                <h5>Definition</h5>
+                                <p>
+                                    Let \( {`x_{2}`} \) a number in binary, then \( {`Complement_2(x)`} \)
+                                    is a binary number, call it \( {`y`} \) wich \( {`x + y = 0`} \).
+                                    At least in the space we have.
+                                </p>
+
+                                <p>
+                                    There is a simple formula to find such \( {`y`} \), this is
+                                    \( {`y = Complement_1(x) + 1`} \).
+
+                                    This formula is really intuitive, because 
+                                    \( {`x + Complement_1(x) = 1111 \\dots 1`} \), so, when you add a \( {`1`} \), all
+                                    become a zero.
+                                </p>
+
+                                <p>
+                                    This is a curiosity:  \( {`x = Complement_2(Complement_2(x))`} \)
+                                </p>
+
+                                <h5>Handy Tips</h5>
+                                <ul className="browser-default" >
+                                    <li>
+                                        If the first bit is a "0": <br/>Just ignore the last bit.
+                                        Your number is a positive
+                                    </li>
+                                    <li>
+                                        If the first bit is a "1": <br/>Just ignore the last bit
+                                        and do a 1 + the complement of 1 of the remaining bits.
+                                        Your number is negative
+                                    </li>
+                                </ul>
+
+                                <h5>Limits</h5>
+                                <ul className="browser-default" >
+                                    <li>
+                                        Suppose we have space to store \( {`n`} \) bits, then 
+                                        we have numbers from \( {`[-2^{n-1}+1, 2^{n-1}-1]`} \)
+                                    </li>
+                                    <li>
+                                        We have just 1 zero, the \( {`000\\dots00`} \)
+                                    </li>
+                                </ul>
+
                             <br />
                             <br />
                         </div>
