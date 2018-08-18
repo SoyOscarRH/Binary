@@ -1,5 +1,6 @@
 import React from "react"
 
+
 export default function SimpleInput (props) {
     return (
         <React.Fragment>
