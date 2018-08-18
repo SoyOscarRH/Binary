@@ -20,7 +20,7 @@ export default class DecimalToBinary extends React.Component {
 
     ConvertFromBinary(text) {
         let binary = toBinaryStyle(text)
-        let decimal =  String(parseInt(binary.trim(), 2))
+        let decimal =  String(parseInt(binary.replace(/ /g, ""), 2))
 
         this.setState({
             Binary: binary,
@@ -30,7 +30,7 @@ export default class DecimalToBinary extends React.Component {
 
     ConvertFromDecimal(text) {
         let decimal = toIntegerStyle(text)
-        let binary = (decimal.trim() >>> 0).toString(2)
+        let binary = (decimal.replace(/ /g, "") >>> 0).toString(2)
 
         this.setState({
             Binary: toBinaryStyle(binary),

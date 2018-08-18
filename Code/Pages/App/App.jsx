@@ -5,16 +5,65 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import M from "materialize-css"
-import { HashRouter, Switch, Route } from 'react-router-dom'
+import { HashRouter, Switch, Route, Link } from 'react-router-dom'
 
 import Header from "../Header/Header.jsx"
 import Footer from "../Footer/Footer.jsx"
 
+import * as DataConverts from "../App/Converters.json"
+
 import Complement1 from "../Complement1/Complement1.jsx"
 import Complement2 from "../Complement2/Complement2.jsx"
 import DecimalToBinary from "../DecimalToBinary/DecimalToBinary.jsx"
+import PartialRepresentation from "../PartialRepresentation/PartialRepresentation.jsx"
 
 import style from "./App.css"
+
+
+function Home(props) {
+
+    const ColorsForCards = [
+        "indigo lighten-2",
+        "cyan lighten-1",
+        "green lighten-2",
+        "orange lighten-2",
+        "brown lighten-2",
+    ].sort(() => Math.random() - 0.5)
+
+    let i = 0
+    return (
+        <div className="row">
+            <div className="col s12 m8 offset-m2 l6 offset-l3">
+                <div className="card-panel white">
+
+                    <h4 className="blue-grey-text text-darken-2 center"> Converters </h4>
+                    <br />
+                    {
+                        DataConverts.Data.map(
+                            Topic => {
+                                const SubTopics = Topic.SubTypes.map(
+                                    (Type) =>
+                                    <div key={Type[0]} className="row"> 
+                                        <Link 
+                                            className={`col s10 offset-s1 btn-large waves-effect ${ColorsForCards[++i % 6]}`}
+                                            to={Type[1]}>
+                                            {Type[0]}
+                                        </Link>
+                                    </div>
+                                )
+                                return (
+                                    <React.Fragment key={Topic.Name}>
+                                        {SubTopics}
+                                    </React.Fragment>
+                                )
+                            }
+                        )
+                    }
+                </div> 
+            </div>
+        </div>
+    )
+}
 
 class App extends React.Component {
 
@@ -56,6 +105,16 @@ class App extends React.Component {
                             exact  = {false}
                             path   = '/FromBinarytoComplement2/' 
                             render = {(props) =>  <Complement2 {...props} />}
+                        />
+                        <Route
+                            exact  = {true}
+                            path   = '/' 
+                            render = {(props) =>  <Home {...props} />}
+                        />
+                        <Route
+                            exact  = {true}
+                            path   = '/PartialRepresentation' 
+                            render = {(props) =>  <PartialRepresentation {...props} />}
                         />
                     </Switch>
                     <br />

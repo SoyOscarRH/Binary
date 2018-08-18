@@ -9,7 +9,10 @@ export default function Header(props) {
             <div className="navbar-fixed blue-grey darken-3">
                 <nav className="blue-grey darken-3">
                     <div className="nav-wrapper blue-grey darken-3 container">
-                        <a className="brand-logo center" style={{fontSize: "1.1rem"}}>
+                        <a className="brand-logo center hide-on-small-only" style={{fontSize: "1.9rem"}}>
+                            <b>Binary</b> Conversions
+                        </a>
+                        <a className="brand-logo center hide-on-med-and-up" style={{fontSize: "1.1rem"}}>
                             <b>Binary</b> Conversions
                         </a>
                         <a href="" data-target="SideNav" className="sidenav-trigger show-on-large">

@@ -2,85 +2,31 @@ import React from "react"
 import {toBinaryStyle, toIntegerStyle} from "../../Helpers/Binary"
 import SimpleInput from "../../Components/SimpleInput"
 
-export default class Complement2 extends React.Component {
+export default class PartialRepresentation extends React.Component {
     
     constructor(props) {
         super(props)
         this.state = {
             Binary: "",
-            Complement2: "",
-            isBinaryUp: true,
+            PartialRepresentation: "",
             SizeOfWord: 3,
         }
     }
 
     componentDidMount() {
-        let buttons = document.querySelectorAll('.fixed-action-btn')
         let selectors = document.querySelectorAll('select')
-
-        M.FloatingActionButton.init(buttons, {})
         M.FormSelect.init(selectors, {})
         MathJax.Hub.Typeset()
     }
 
     ConvertFromBinary(text) {
-        let binary = text
-        let semiComplement2 = 
-            (parseInt(
-                binary.replace(/ /g, "").split("").map(e => {
-                    if (e !== "0" && e !== "1") return e 
-                    if (e === "0") return  "1" 
-                    if (e === "1") return  "0" 
-                })
-                .join(""),
-                2
-            )
-            + 1
-            ).toString(2)
+        let binary = text.replace(/ /g, "")
+        let offSet = 2**(binary.length-1)
+        let PartialRepresentation = (parseInt(binary, 2) - (offSet - 1)).toString()
 
-        let numberOfZeros = text.replace(/ /g, "").length - semiComplement2.length
-        let complement2 = "0".repeat(numberOfZeros > 0? numberOfZeros : 0) + semiComplement2
-
-        return isNaN(complement2)? "" : 
-            (text.replace(/ /g, "").replace(/0/g, "") === "")? complement2.substr(1) : complement2
-    }
-
-    ConvertFromComplement2(text) {
-        if (text.replace(/ /g, "").replace(/0/g, "") === "") return text
-        let complement2 = text
-        let semiBinary = (parseInt(complement2.replace(/ /g, ""),2) - 1).toString(2)
-
-        let numberOfZeros = text.replace(/ /g, "").length - semiBinary.length
-        semiBinary = "0".repeat(numberOfZeros > 0? numberOfZeros : 0) + semiBinary
-        let binary = semiBinary.split("").map(e => {
-            if (e !== "0" && e !== "1") return e 
-            if (e === "0") return  "1" 
-            if (e === "1") return  "0" 
-        })
-        .join("")
-
-        return binary
-    }
-
-    ConvertFromComplent2toDecimal(text) {
-        if (text.replace(/0/g, "") === "") return "+0"
-        if (text.substr(1).replace(/0/g, "") === "") return "??"
-
-        if (text.charAt(0) == "0")
-            return "+" + (parseInt(text.replace(/ /g, ""), 2).toString(10))
-        else {
-            let semiBinary = parseInt(
-                text.substr(1).replace(/ /g, "").split("").map(e => {
-                    if (e !== "0" && e !== "1") return e 
-                    if (e === "0") return  "1" 
-                    if (e === "1") return  "0" 
-                })
-                .join("")
-                , 2
-            )
-            return (semiBinary + 1) * -1
-        }
-        
+        return isNaN(PartialRepresentation)? "" : 
+            (PartialRepresentation.charAt(0) == "-")? 
+                PartialRepresentation : "+" + PartialRepresentation 
     }
 
     render () {
@@ -94,35 +40,26 @@ export default class Complement2 extends React.Component {
                 onChange={e => {
                     this.setState({
                         Binary: toBinaryStyle(e.target.value),
-                        Complement2: toBinaryStyle(this.ConvertFromBinary(e.target.value))
+                        PartialRepresentation: (this.ConvertFromBinary(e.target.value))
                     })
                 }}
             />
 
         let Element2 =  
             <SimpleInput 
-                title={"Complement 2 (Bin)"}
+                title={"Dec-Partial Representation"}
                 materializeCSSColorText = "orange-text text-darken-2"
-                value={this.state.Complement2}
-                onChange={e => {
-                    this.setState({
-                        Complement2: toBinaryStyle(e.target.value),
-                        Binary: toBinaryStyle(this.ConvertFromComplement2(e.target.value))
-                    })
-                }}
+                value={this.state.PartialRepresentation}
+                onChange={() => {}}
             />
-
-        const Flip = e => this.setState(prevState => ({ isBinaryUp: !prevState.isBinaryUp}))
-        if (!this.state.isBinaryUp) [Element1, Element2] = [Element2, Element1]
 
 
         let TableOfData = 
             <table className="highlight">
                 <thead>
                 <tr style={{fontSize: "1.4rem"}}>
-                    <th>Decimal</th>
                     <th>Binary</th>
-                    <th>Complement 2</th>
+                    <th>Partial Representation</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -141,9 +78,8 @@ export default class Complement2 extends React.Component {
                                             fontWeight: "600"
                                         }}
                                     >
-                                        <td>{this.ConvertFromComplent2toDecimal(elementInBinary)}   </td>
                                         <td>{toBinaryStyle(elementInBinary)}                        </td>
-                                        <td>{toBinaryStyle(this.ConvertFromBinary(elementInBinary))}</td>
+                                        <td>{this.ConvertFromBinary(elementInBinary)}</td>
                                     </tr>
                                 )
                             }
@@ -160,7 +96,7 @@ export default class Complement2 extends React.Component {
                     <div className="col s12 m10 l8 offset-m1 offset-l2">
                         
                         <div className="row">
-                            <h3 style={{fontWeight: 200}}> Complement <b>2</b> </h3>
+                            <h3 style={{fontWeight: 200}}> <b>Partial</b> Representation </h3>
                                 
                                 <p>
                                     This is ... This is awesome.
@@ -168,33 +104,20 @@ export default class Complement2 extends React.Component {
 
                                 <h5>Definition</h5>
                                 <p>
-                                    Let \( {`x_{2}`} \) a number in binary, then \( {`Complement_2(x)`} \)
-                                    is a binary number, call it \( {`y`} \) with \( {`x + y = 0`} \).
-                                    At least in the space we have.
-                                </p>
-
-                                <p>
-                                    There is a simple formula to find such \( {`y`} \), this is
-                                    \( {`y = Complement_1(x) + 1`} \).
-
-                                    This formula is really intuitive, because 
-                                    \( {`x + Complement_1(x) = 1111 \\dots 1`} \), so, when you add a \( {`1`} \), all
-                                    become a zero.
-                                </p>
-
-                                <p>
-                                    This is a curiosity:  \( {`x = Complement_2(Complement_2(x))`} \)
+                                    Is a simple formula, you have \( {`n`} \) bit to represent
+                                    your numbers, so you just shift the number line,
+                                    so you can represent the negatives.
                                 </p>
 
                                 <h5>Handy Tips</h5>
                                 <ul className="browser-default" >
                                     <li>
-                                        If the first bit is a "0": <br/>Just ignore the last bit.
+                                        If the first bit is a "0": <br/>Just ignore the last bit and add \( {`1`} \).
                                         Your number is a positive
                                     </li>
                                     <li>
                                         If the first bit is a "1": <br/>Just ignore the last bit
-                                        and do a 1 + the complement of 1 of the remaining bits.
+                                        the complement of 1 of the remaining bits.
                                         Your number is negative
                                     </li>
                                 </ul>
@@ -203,14 +126,10 @@ export default class Complement2 extends React.Component {
                                 <ul className="browser-default" >
                                     <li>
                                         Suppose we have space to store \( {`n`} \) bits, then 
-                                        we have numbers from \( {`[-2^{n-1}+1, 2^{n-1}-1]`} \)
+                                        we have numbers from \( {`[-2^{n-1}+1, 2^{n-1}]`} \)
                                     </li>
                                     <li>
-                                        We have just 1 zero, the \( {`000\\dots00`} \)
-                                    </li>
-                                    <li>
-                                        We have a strange case: the \( {`1000\\dots00`} \), because
-                                        this number is its own inverse :v
+                                        We have just 1 zero, the \( {`0111\\dots11`} \)
                                     </li>
                                 </ul>
 
@@ -235,7 +154,7 @@ export default class Complement2 extends React.Component {
                                 <input 
                                     type="range"
                                     min="1"
-                                    max="7"
+                                    max="8"
                                     step="1"
                                     value={this.state.SizeOfWord}
                                     onChange={e => this.setState({SizeOfWord: parseInt(e.target.value)})}/>
@@ -247,12 +166,6 @@ export default class Complement2 extends React.Component {
                         </div>
                     </div>
                     <div ></div>
-                </div>
-
-                <div className="fixed-action-btn">
-                    <a className="btn-floating btn-large red waves-effect waves-light" onClick={e=>Flip()}>
-                        <i className="material-icons">autorenew</i>
-                    </a>
                 </div>
 
             </React.Fragment>
