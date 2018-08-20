@@ -35,24 +35,26 @@ export default class FloatingPoint extends React.Component {
         })
     }
 
-    ConvertFromComplement1(text) {
-        text = toBinaryStyle(text)
+    GetFullMantisa(sign, exponent, mantissa) {
+        return exponent == "0000 0000"? "0.": "1." + mantissa
+    }
 
-        let normal =  text.split("").map(e => {
-                    if (e !== "0" && e !== "1") return e 
-                    if (e === "0") return  "1" 
-                    if (e === "1") return  "0" 
-                })
-                .join("")
+    CalculateDecimal(sign, exponent, mantissa) {
+        let Decimal = 1
+        if (sign === "1") Decimal *= -1
 
-        this.setState({
-            NormalBinary: normal,
-            Complement1: text,
-        })
+        let Mantissa = this.GetFullMantisa(sign, exponent, mantissa).replace(/ /g, "")
+
+        Decimal *= parseInt(Mantissa.replace(".", ""), 2)
+        console.log(parseInt(Mantissa.replace(".", ""), 2))
+        Decimal /= Mantissa.length
+        Decimal *= 2**(parseInt(exponent.replace(/ /g, ""), 2) - 2**7)
+
+
+        return Decimal
     }
 
     render () {
-        console.log("asasa")
         return (
             <React.Fragment>
                 <div className="row" style={{display: "grid", gridTemplateColumns: "5% 90% 5%"}}>
@@ -97,8 +99,8 @@ export default class FloatingPoint extends React.Component {
                             <SimpleInput 
                                 title={"Decimal Input"}
                                 materializeCSSColorText = "blue-grey-text text-darken-1"
-                                value={this.state.NormalBinary}
-                                onChange={e => this.ConvertFromNormalBinary(e.target.value)}
+                                value={this.state.Decimal}
+                                onChange={() => {}}
                             />
                             <br />
                             <br />
@@ -148,8 +150,12 @@ export default class FloatingPoint extends React.Component {
                                         value={this.state.Sign}
                                         onChange={
                                             e => {
-                                                this.setState({
-                                                    Sign: toBinaryStyle(e.target.value)
+                                                const newValue = e.target.value
+                                                this.setState( (preState) => {
+                                                    return {
+                                                        Sign: toBinaryStyle(newValue),
+                                                        Decimal: this.CalculateDecimal(newValue, preState.Exponent, preState.Mantissa)
+                                                    }
                                                 })
                                             }
                                         }
@@ -168,8 +174,12 @@ export default class FloatingPoint extends React.Component {
                                         value={this.state.Exponent}
                                         onChange={
                                             e => {
-                                                this.setState({
-                                                    Exponent: toBinaryStyle(e.target.value)
+                                                const newValue = e.target.value
+                                                this.setState( (preState) => {
+                                                    return {
+                                                        Exponent: toBinaryStyle(newValue),
+                                                        Decimal: this.CalculateDecimal(preState.Sign, newValue, preState.Mantissa)
+                                                    }
                                                 })
                                             }
                                         }
@@ -189,8 +199,12 @@ export default class FloatingPoint extends React.Component {
                                         value={this.state.Mantissa}
                                         onChange={
                                             e => {
-                                                this.setState({
-                                                    Mantissa: toBinaryStyle(e.target.value)
+                                                const newValue = e.target.value
+                                                this.setState( (preState) => {
+                                                    return {
+                                                        Exponent: toBinaryStyle(newValue),
+                                                        Decimal: this.CalculateDecimal(preState.Sign, preState.Exponent, newValue)
+                                                    }
                                                 })
                                             }
                                         }
