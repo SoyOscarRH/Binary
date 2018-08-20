@@ -12,8 +12,8 @@ export default class FloatingPoint extends React.Component {
         this.state = {
             Decimal: "",
             Sign: "0",
-            Mantissa: "101 1010 1010 1010 1010 1010",
-            Exponent: "1010 1010",
+            Mantissa: "100 0000 0000 0000 0000 0000",
+            Exponent: "1000 0000",
             isDecimalUp: true,
         }
     }
@@ -40,14 +40,19 @@ export default class FloatingPoint extends React.Component {
     }
 
     CalculateDecimal(sign, exponent, mantissa) {
-        let Decimal = 1
-        if (sign === "1") Decimal *= -1
 
         let Mantissa = this.GetFullMantisa(sign, exponent, mantissa).replace(/ /g, "")
+        console.log(Mantissa)
 
-        Decimal *= parseInt(Mantissa.replace(".", ""), 2)
-        console.log(parseInt(Mantissa.replace(".", ""), 2))
-        Decimal /= Mantissa.length
+        let Decimal = 0.0
+        Mantissa.split("").forEach((e, index) => {
+            const realIndex = (index > 1)? index - 1: index
+            if (index != 1 && e == "1") Decimal += 2.0**(-1 * realIndex)
+        })
+        if (sign === "1") Decimal *= -1
+
+        console.log(Decimal)
+
         Decimal *= 2**(parseInt(exponent.replace(/ /g, ""), 2) - 2**7)
 
 
@@ -115,7 +120,7 @@ export default class FloatingPoint extends React.Component {
                                             \\times 2
                                             ^
                                             {
-                                                ${this.state.Exponent}
+                                                ${parseInt(this.state.Exponent.replace(/ /g, ""), 2) - 2**7}
                                             }
                                         $$`
                                     } 
@@ -202,7 +207,7 @@ export default class FloatingPoint extends React.Component {
                                                 const newValue = e.target.value
                                                 this.setState( (preState) => {
                                                     return {
-                                                        Exponent: toBinaryStyle(newValue),
+                                                        Mantissa: toBinaryStyle(newValue),
                                                         Decimal: this.CalculateDecimal(preState.Sign, preState.Exponent, newValue)
                                                     }
                                                 })
