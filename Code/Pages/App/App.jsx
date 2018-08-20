@@ -16,6 +16,7 @@ import Complement1 from "../Complement1/Complement1.jsx"
 import Complement2 from "../Complement2/Complement2.jsx"
 import DecimalToBinary from "../DecimalToBinary/DecimalToBinary.jsx"
 import PartialRepresentation from "../PartialRepresentation/PartialRepresentation.jsx"
+import FloatingPoint from "../FloatingPoint/FloatingPoint.jsx"
 
 import style from "./App.css"
 
@@ -27,6 +28,7 @@ function Home(props) {
         "cyan lighten-1",
         "green lighten-2",
         "orange lighten-2",
+        "teal lighten-2",
         "brown lighten-2",
     ].sort(() => Math.random() - 0.5)
 
@@ -116,9 +118,12 @@ class App extends React.Component {
                             path   = '/PartialRepresentation' 
                             render = {(props) =>  <PartialRepresentation {...props} />}
                         />
+                        <Route
+                            exact  = {true}
+                            path   = '/FloatingPoint' 
+                            render = {(props) =>  <FloatingPoint {...props} />}
+                        />
                     </Switch>
-                    <br />
-                    <br />
                     <br />
                     <br />
                     <br />

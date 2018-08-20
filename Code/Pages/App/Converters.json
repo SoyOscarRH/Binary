@@ -29,6 +29,15 @@
                     "/PartialRepresentation/"
                 ]
             ]
+        },
+        {
+            "Name": "Floating Point",
+            "SubTypes": [
+                [
+                    "IEEE Floating Point",
+                    "/FloatingPoint/"
+                ]
+            ]
         }
     ]
 }

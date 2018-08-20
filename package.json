@@ -36,6 +36,8 @@
     "materialize-css": "^1.0.0-rc.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-mathjax-preview": "^0.1.10",
+    "react-mathjax2": "0.0.1",
     "react-router-dom": "^4.3.1"
   }
 }

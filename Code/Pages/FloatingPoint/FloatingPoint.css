@@ -1,0 +1,91 @@
+.Wrapper {
+    display: grid;
+    grid-template-columns: 15fr 80fr 230fr 5fr;
+    gap: 0.8rem;
+    width: inherit;
+    padding: 2rem;
+    overflow: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+}
+
+.Sign {
+    background-color: #536dfe;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    min-width: 3rem;
+    text-align: center;
+    border-color: white;
+    border-radius: 0.9rem;
+}
+
+.Exponent {
+    background-color: #ef5350;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    min-width: 10.4rem;
+    text-align: center;
+    border-color: white;
+    border-radius: 0.5rem;
+}
+
+
+.Mantissa {
+    background-color: #00796b;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    min-width: 28rem;
+    text-align: center;
+    border-color: white;
+    border-radius: 0.9rem;
+}
+
+.SignText {
+    background-color: #536dfe;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    padding-left: 1rem;
+    padding-right: 1.7rem;
+    min-width: 1.5rem;
+    text-align: center;
+    border-color: white;
+    font-weight: 300;
+    border-radius: 0.9rem;
+}
+
+.ExponentText {
+    background-color: #ef5350;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    min-width: 10.4rem;
+    text-align: center;
+    border-color: white;
+    font-weight: 300;
+    border-radius: 0.5rem;
+}
+
+
+.MantissaText {
+    background-color: #00796b;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    min-width: 28rem;
+    font-weight: 300;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    text-align: center;
+    border-color: white;
+    border-radius: 0.9rem;
+}
