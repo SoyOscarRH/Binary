@@ -78,26 +78,39 @@ export default class FloatingPoint extends React.Component {
                             <h5>Definition</h5>
                             <p>
                                 Floating point representation is based on scientific notation,
-                                so, lets be \({`x`}\) the number to store in floating point.
+                                so, lets be x the number to store in floating point.
 
                                 Then we have:
-                                $${`
-                                    x := -1^{Sign} \\; Mantissa \\times 2^{Exponent}
-                                `}$$
-
+                                <MathJax math={`
+                                $$
+                                x := -1^{Sign} \\; Mantissa \\times 2^{Exponent}
+                                $$`} />
                                 <br />
 
                                 There are other authors that generalize it more and say 
-                                \({`x \\in F(base, precision, minExp, maxExp)`}\)
+                                <MathJax math={`
+                                $x \\in F(base, precision, minExp, maxExp)$`} />
                             </p>
 
                             <h5>Hidden bit</h5>
                             <p>
                                 Something awesome of the binary and base-2 is that
                                 any number that is not zero, when we express it in
-                                scientific notation are of the form \({`\\pm 1.xxxx \\times 2^E`}\)
-                                so... We do not need to store the first bit, that why it is called
+                                scientific notation are of the form:
+                                <MathJax math={` $\\pm 1.xxxx \\times 2^E$`} />
+                                
+                                So... We do not need to store
+                                the first bit, that why it is called
                                 the hidden bit.
+
+                                <br />
+                                <br />
+
+                                When the exponent is composed of all zeros, then we say
+                                that the hidden bit is:
+                                <MathJax math={` $\\pm 0.xxxx \\times 2^E$`} />
+
+
                             </p>
                             
                         </div>
