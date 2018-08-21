@@ -36,27 +36,31 @@ export default class FloatingPoint extends React.Component {
     }
 
     GetFullMantisa(sign, exponent, mantissa) {
-        return exponent == "0000 0000"? "0.": "1." + mantissa
+        return exponent == "0000 0000"? "0." + mantissa : "1." + mantissa
     }
 
     CalculateDecimal(sign, exponent, mantissa) {
 
+        if (exponent.replace(/ /g, "") == "11111111") {
+            if (mantissa.replace(/ /g, "").replace(/0/g, "") == "") return `${(sign === "1")? "-" : "+"}∞` 
+            else return "NaN"
+        }
+
         let Mantissa = this.GetFullMantisa(sign, exponent, mantissa).replace(/ /g, "")
-        console.log(Mantissa)
 
         let Decimal = 0.0
         Mantissa.split("").forEach((e, index) => {
             const realIndex = (index > 1)? index - 1: index
             if (index != 1 && e == "1") Decimal += 2.0**(-1 * realIndex)
         })
-        if (sign === "1") Decimal *= -1
-
-        console.log(Decimal)
-
-        Decimal *= 2**(parseInt(exponent.replace(/ /g, ""), 2) - 2**7)
 
 
-        return Decimal
+        if (exponent.replace(/ /g, "").replace(/0/g, "") == "")
+            Decimal *= 2**((-126))
+        else 
+            Decimal *= 2**(parseInt(exponent.replace(/ /g, ""), 2) - (2**7 - 1) )
+
+        return `${(sign === "1")? "-" : "+"}${Decimal}`
     }
 
     render () {
@@ -120,7 +124,10 @@ export default class FloatingPoint extends React.Component {
                                             \\times 2
                                             ^
                                             {
-                                                ${parseInt(this.state.Exponent.replace(/ /g, ""), 2) - 2**7}
+                                                ${this.state.Exponent == "0000 0000"?
+                                                "-126":
+                                                parseInt(this.state.Exponent.replace(/ /g, ""), 2) - (2**7-1)
+                                                }
                                             }
                                         $$`
                                     } 
