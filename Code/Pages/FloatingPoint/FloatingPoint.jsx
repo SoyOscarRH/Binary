@@ -106,7 +106,7 @@ export default class FloatingPoint extends React.Component {
                                 <br />
                                 <br />
 
-                                When the exponent is composed of all zeros, then we say
+                                And when the exponent is composed of all zeros, then we say
                                 that the hidden bit is:
                                 <MathJax math={` $\\pm 0.xxxx \\times 2^E$`} />
 
