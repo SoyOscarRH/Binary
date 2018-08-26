@@ -118,15 +118,6 @@ export default class FloatingPoint extends React.Component {
 
                         <div className="row">
                             
-                            <SimpleInput 
-                                title={"Decimal Input"}
-                                materializeCSSColorText = "blue-grey-text text-darken-1"
-                                value={this.state.Decimal}
-                                onChange={() => {}}
-                            />
-                            <br />
-                            <br />
-
                             <div>
                                 <MathJax 
                                     math={
@@ -242,6 +233,16 @@ export default class FloatingPoint extends React.Component {
 
                             </div>
 
+                            <br />
+                            <br />
+
+                            <SimpleInput 
+                                title={"Decimal Input"}
+                                materializeCSSColorText = "blue-grey-text text-darken-1"
+                                readOnly = {true}
+                                value={this.state.Decimal}
+                                onChange={() => {}}
+                            />
                             <br />
                             <br />
 

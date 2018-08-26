@@ -10,6 +10,7 @@ export default function SimpleInput (props) {
                     className={`validate ${props.materializeCSSColorText}`} 
                     value={props.value}
                     onChange={e => props.onChange(e)}
+                    readOnly ={props.readOnly}
                     style={{
                         fontFamily: "Courier New",
                         fontWeight: "600",
