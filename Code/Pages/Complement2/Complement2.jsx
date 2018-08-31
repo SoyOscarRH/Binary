@@ -119,10 +119,10 @@ export default class Complement2 extends React.Component {
         let TableOfData = 
             <table className="highlight">
                 <thead>
-                <tr style={{fontSize: "1.4rem"}}>
+                <tr style={{fontSize: "1.2rem"}}>
                     <th>Decimal</th>
-                    <th>Binary</th>
-                    <th>Complement 2</th>
+                    <th>Complement 2 </th>
+                    <th>Inverse</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -169,14 +169,15 @@ export default class Complement2 extends React.Component {
                                 <h5>Definition</h5>
                                 <p>
                                     Let \( {`x_{2}`} \) a number in binary, then \( {`Complement_2(x)`} \)
-                                    is a binary number, call it \( {`y`} \) with \( {`x + y = 0`} \).
-                                    At least in the space we have.
+                                    is a binary number, call it \( {`y_2`} \) such that \( {`x_2 + y_2 = 0`} \).
+                                    At least in the space we have to store \( {`x_{2}, y_{2}`} \).
                                 </p>
 
                                 <p>
-                                    There is a simple formula to find such \( {`y`} \), this is
-                                    \( {`y = Complement_1(x) + 1`} \).
+                                    There is a simple formula to find such it: 
+                                    \( {`y_2 := Complement_1(x_2) + 1`} \).
 
+                                    <br />
                                     This formula is really intuitive, because 
                                     \( {`x + Complement_1(x) = 1111 \\dots 1`} \), so, when you add a \( {`1`} \), all
                                     become a zero.
@@ -187,6 +188,11 @@ export default class Complement2 extends React.Component {
                                 </p>
 
                                 <h5>Handy Tips</h5>
+
+                                Suppose that you have a number that you know that are encoded
+                                in complement 2.
+                                Then to know the number that it represent follow this tips:
+
                                 <ul className="browser-default" >
                                     <li>
                                         If the first bit is a "0": <br/>Just ignore the last bit.
@@ -203,7 +209,7 @@ export default class Complement2 extends React.Component {
                                 <ul className="browser-default" >
                                     <li>
                                         Suppose we have space to store \( {`n`} \) bits, then 
-                                        we have numbers from \( {`[-2^{n-1}+1, 2^{n-1}-1]`} \)
+                                        we have numbers from \( {`[-(2^{n-1}-1), +(2^{n-1}-1)]`} \)
                                     </li>
                                     <li>
                                         We have just 1 zero, the \( {`000\\dots00`} \)

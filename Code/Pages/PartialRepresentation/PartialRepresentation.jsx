@@ -110,15 +110,24 @@ export default class PartialRepresentation extends React.Component {
                                 </p>
 
                                 <h5>Handy Tips</h5>
+
+                                Suppose that you have a number that you know that are encoded
+                                in partial representation.
+                                Then to know the number that it represent follow this tips:
+
                                 <ul className="browser-default" >
                                     <li>
-                                        If the first bit is a "0": <br/>Just ignore the last bit and add \( {`1`} \).
-                                        Your number is a positive
+                                        If the first bit is a "0": <br/>
+                                        
+                                        Just ignore the last bit.
+                                        Then save the complement of 1 of the remaining bits.
+                                        Your number is negative
                                     </li>
                                     <li>
-                                        If the first bit is a "1": <br/>Just ignore the last bit
-                                        the complement of 1 of the remaining bits.
-                                        Your number is negative
+                                        If the first bit is a "1": <br/>
+                                        
+                                        Just ignore the last bit, and save 1 plus the remaining bits.
+                                        Your number is a positive
                                     </li>
                                 </ul>
 
@@ -126,7 +135,7 @@ export default class PartialRepresentation extends React.Component {
                                 <ul className="browser-default" >
                                     <li>
                                         Suppose we have space to store \( {`n`} \) bits, then 
-                                        we have numbers from \( {`[-2^{n-1}+1, 2^{n-1}]`} \)
+                                        we have numbers from \( {`[-(2^{n-1}-1), (2^{n-1}-1)+1]`} \)
                                     </li>
                                     <li>
                                         We have just 1 zero, the \( {`0111\\dots11`} \)

@@ -102,15 +102,25 @@ export default class FloatingPoint extends React.Component {
                                 So... We do not need to store
                                 the first bit, that why it is called
                                 the hidden bit.
+                            </p>
 
-                                <br />
-                                <br />
+                            <h5>Subnormal</h5>
+                            <p>
+                                To store the zero and many small numbers we have the idea
+                                that when the exponent is composed of all zeros
 
-                                And when the exponent is composed of all zeros, then we say
-                                that the hidden bit is:
-                                <MathJax math={` $\\pm 0.xxxx \\times 2^E$`} />
+                                We are talking of the number:
+                                <MathJax math={` $\\pm 0.xxxx \\times 2^{minExp}$`} />
+                            </p>
 
+                            <h5>Infinity and NaN</h5>
+                            <p>
+                                To store the infinity and NaN we have the idea
+                                that when the exponent is composed of all ones
+                                and the mantissa is all zeros we are talking
+                                about infinity.
 
+                                Any other mantissa will represent a NaN (not a number)
                             </p>
                             
                         </div>
@@ -121,19 +131,24 @@ export default class FloatingPoint extends React.Component {
                             <div>
                                 <MathJax 
                                     math={
-                                        `$$
-                                            ${this.state.Sign === "1"? "-":"+"}
-                                            ${this.state.Exponent == "0000 0000"? "0.": "1."}
-                                            ${this.state.Mantissa}
-                                            \\times 2
-                                            ^
-                                            {
-                                                ${this.state.Exponent == "0000 0000"?
-                                                "-126":
-                                                parseInt(this.state.Exponent.replace(/ /g, ""), 2) - (2**7-1)
+                                        this.state.Exponent === "1111 1111"?
+                                            (
+                                                (this.state.Mantissa.replace(/ /g, "").replace(/0/g, "") === "")?
+                                                    `$$ ${this.state.Sign === "1"? "-":"+"} \\infty$$`: `NaN`
+                                            ):
+                                            `$$
+                                                ${this.state.Sign === "1"? "-":"+"}
+                                                ${this.state.Exponent == "0000 0000"? "0.": "1."}
+                                                ${this.state.Mantissa}
+                                                \\times 2
+                                                ^
+                                                {
+                                                    ${this.state.Exponent == "0000 0000"?
+                                                    "-126":
+                                                    parseInt(this.state.Exponent.replace(/ /g, ""), 2) - (2**7-1)
+                                                    }
                                                 }
-                                            }
-                                        $$`
+                                            $$`
                                     } 
                                 />
                             </div>
